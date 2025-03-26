@@ -21,7 +21,7 @@ function formatPassiveSkill(passiveText) {
 // Quiz data retrieval
 async function getPassiveSkillQuizData() {
   try {
-    const data = await fs.readFile(path.join(__dirname, 'data.json'), 'utf8');
+    const data = await fs.readFile(path.join(__dirname, 'passive_skill_sets.json'), 'utf8');
     const { cards } = JSON.parse(data);
     
     // Filter cards based on criteria
