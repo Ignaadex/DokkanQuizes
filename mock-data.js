@@ -16991,5 +16991,3 @@ const mockData = {
     }
   ]
 }
-
-export {mockData}
