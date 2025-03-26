@@ -50,6 +50,9 @@ function formatPassiveSkill(passiveText) {
     return passiveText;
 }
 
+var data = fs.readFileSync('passive_skill_sets.json');
+var mockData = JSON.parse(data);
+
 // Quiz data generation
 function getPassiveSkillQuizData() {
     // Filter cards based on criteria (simplified since we're using mock data)
