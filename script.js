@@ -178,10 +178,10 @@ function loadQuiz(quizData) {
 function formatPassiveText(text) {
     // Define image replacements
     const imageReplacements = {
-        '{passiveImg:up_g}': '<img src="./DokkanQuizes/images/passive_skill_dialog_arrow01.png" class="passive-arrow" alt="↑">',
-        '{passiveImg:down_y}': '<img src="./DokkanQuizes/images/passive_skill_dialog_arrow03.png" class="passive-arrow" alt="↓">',
-        '{passiveImg:once}': '<img src="./DokkanQuizes/images/passive_skill_dialog_icon_01.png" class="passive-icon" alt="once">',
-        '{passiveImg:forever}': '<img src="./DokkanQuizes/images/passive_skill_dialog_icon_02.png" class="passive-icon" alt="forever">'
+        '{passiveImg:up_g}': '<img src="/images/passive_skill_dialog_arrow01.png" class="passive-arrow" alt="↑">',
+        '{passiveImg:down_y}': '<img src="/images/passive_skill_dialog_arrow03.png" class="passive-arrow" alt="↓">',
+        '{passiveImg:once}': '<img src="/images/passive_skill_dialog_icon_01.png" class="passive-icon" alt="once">',
+        '{passiveImg:forever}': '<img src="/images/passive_skill_dialog_icon_02.png" class="passive-icon" alt="forever">'
     };
 
     // Helper function to process text with image replacements
@@ -192,7 +192,7 @@ function formatPassiveText(text) {
             processed = processed.replace(new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), html);
         });
         // Format percentage increases with green up arrow
-        processed = processed.replace(/(\d+)%↑/g, '$1% <img src="./images/passive_skill_dialog_arrow01.png" class="passive-arrow" alt="↑">');
+        processed = processed.replace(/(\d+)%↑/g, '$1% <img src="/images/passive_skill_dialog_arrow01.png" class="passive-arrow" alt="↑">');
         return processed;
     };
 
