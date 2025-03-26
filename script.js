@@ -6,7 +6,7 @@ const nextButton = document.getElementById('next-btn');
 const scoreElement = document.getElementById('score');
 const totalQuestionsElement = document.getElementById('total-questions');
 
-import mockData from './mockData.js';
+import { mockData } from './mockData.js';
 
 // Quiz state
 let currentQuiz = null;
