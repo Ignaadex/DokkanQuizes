@@ -49,9 +49,9 @@ function getRandomElement(array) {
 function formatPassiveSkill(passiveText) {
     return passiveText;
 }
-
-var data = fs.readFileSync('passive_skill_sets.json');
-var mockData = JSON.parse(data);
+const json = fs.readFileSync("passive_skill_sets.json", "utf8");
+const data = JSON.parse(json);
+mockData = data;
 
 // Quiz data generation
 function getPassiveSkillQuizData() {
