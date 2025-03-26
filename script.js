@@ -8,8 +8,6 @@ const totalQuestionsElement = document.getElementById('total-questions');
 
 import { mockData } from './mock-data.js';
 
-
-
 // Quiz state
 let currentQuiz = null;
 let selectedOptionId = null;
