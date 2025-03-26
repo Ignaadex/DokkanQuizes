@@ -5,6 +5,8 @@ const submitButton = document.getElementById('submit-btn');
 const nextButton = document.getElementById('next-btn');
 const scoreElement = document.getElementById('score');
 const totalQuestionsElement = document.getElementById('total-questions');
+import { mockData } from './mock-data.js';
+
 
 // Quiz state
 let currentQuiz = null;
