@@ -49,19 +49,6 @@ function getRandomElement(array) {
 function formatPassiveSkill(passiveText) {
     return passiveText;
 }
-let mockData = {};
-
-// Before your quiz initialization
-fetch('passive_skill_sets.json')
-  .then(response => response.json())
-  .then(data => {
-    mockData = data;
-    initQuiz(); // Initialize the quiz after loading data
-  })
-  .catch(error => {
-    console.error('Error loading quiz data:', error);
-    passiveTextElement.textContent = 'Failed to load quiz data.';
-  });
 
 // Quiz data generation
 function getPassiveSkillQuizData() {

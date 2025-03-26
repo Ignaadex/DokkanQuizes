@@ -1,7 +1,4 @@
 // Dokkan Battle Quiz App
-const fs = require('fs').promises;
-const path = require('path');
-
 // Constants
 const QUIZ_TYPES = {
   PASSIVE_SKILL: 'passive_skill',
