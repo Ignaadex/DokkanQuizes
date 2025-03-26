@@ -6,7 +6,7 @@ const nextButton = document.getElementById('next-btn');
 const scoreElement = document.getElementById('score');
 const totalQuestionsElement = document.getElementById('total-questions');
 
-import { mockData } from 'mock-data.js';
+import { mockData } from './mock-data.js';
 
 
 
