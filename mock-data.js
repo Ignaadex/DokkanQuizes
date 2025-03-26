@@ -1,4 +1,4 @@
-export const mockData = {
+const mockData = {
   cards: [
     {
       id: 1000031,
@@ -16991,3 +16991,4 @@ export const mockData = {
     }
   ]
 }
+export { mockData }; // Export mockData
