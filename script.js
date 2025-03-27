@@ -5,6 +5,7 @@ const submitButton = document.getElementById('submit-btn');
 const nextButton = document.getElementById('next-btn');
 const scoreElement = document.getElementById('score');
 const totalQuestionsElement = document.getElementById('total-questions');
+const HardModeButton = document.getElementById('hard-mode-btn');
 
 import { mockData } from './mockData.js';
 
@@ -51,6 +52,7 @@ function getRandomElement(array) {
 function formatPassiveSkill(passiveText) {
     return passiveText;
 }
+
 
 // Quiz data generation
 function getPassiveSkillQuizData() {
@@ -271,48 +273,73 @@ function formatPassiveText(text) {
     return formattedContent.join('\n');
 }
 
+// Track hard mode state
+let isHardMode = false;
+
+// Toggle hard mode
+HardModeButton.addEventListener('click', () => {
+    isHardMode = !isHardMode;
+
+    // Update button text to reflect the current state
+    HardModeButton.textContent = isHardMode ? 'Hard Mode: ON' : 'Hard Mode: OFF';
+
+    // Only reload the current quiz if no answer has been submitted yet
+    if (!currentQuiz || submitButton.disabled) {
+        loadQuiz(currentQuiz);
+    }
+});
+
+
 // Generate options
 function generateOptions(options) {
     optionsContainer.innerHTML = '';
-    
+
     options.forEach(option => {
         const element = elementMap[option.element];
         const rarity = rarityMap[option.rarity];
-        
+
         const optionElement = document.createElement('div');
         optionElement.className = 'option';
         optionElement.dataset.id = option.id;
-        
+
         // Get the thumbnail path based on card ID
         const thumbnailPath = getCardThumbnailPath(option.id);
-        
+
         // Fallback in case the thumbnail doesn't exist
-        const placeholderColor = element.name === 'AGL' ? '00bfff' : 
-                               element.name === 'TEQ' ? '00cc66' : 
-                               element.name === 'INT' ? '9966ff' : 
+        const placeholderColor = element.name === 'AGL' ? '00bfff' :
+                               element.name === 'TEQ' ? '00cc66' :
+                               element.name === 'INT' ? '9966ff' :
                                element.name === 'STR' ? 'ff4d4d' : 'ffcc33';
         const placeholderUrl = `https://placeholder.pics/svg/50x50/${placeholderColor}/FFFFFF/${option.name.substring(0, 1)}`;
-        
+
         const characterIcon = document.createElement('div');
         characterIcon.className = 'character-icon';
         characterIcon.style.setProperty('--character-thumb', `url('${thumbnailPath}')`);
         characterIcon.style.setProperty('--placeholder-bg', `url('${placeholderUrl}')`);
-        
+
+        // Hide character name if hard mode is active
+        const characterName = isHardMode ? hideCharacterName(option.name) : option.name;
+
         optionElement.innerHTML = `
             <div class="character-info">
-                <div class="character-name">${option.name}</div>
+                <div class="character-name">${characterName}</div>
                 <div class="character-element ${element.name}">${element.type} ${element.name}</div>
                 <div class="character-rarity ${rarity}">${rarity}</div>
             </div>
         `;
-        
+
         optionElement.insertBefore(characterIcon, optionElement.firstChild);
-        
+
         // Add click event
         optionElement.addEventListener('click', () => selectOption(option.id));
-        
+
         optionsContainer.appendChild(optionElement);
     });
+}
+
+// Function to hide character name (already defined)
+function hideCharacterName(name) {
+    return name.replace(/(\S)\S+/g, '$1.'); // Example: "Goku" -> "G."
 }
 
 // Select option
