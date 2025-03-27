@@ -23,14 +23,30 @@ def fetch_cards_data(db_path: str) -> Dict[str, List[Dict[str, Any]]]:
     
     # Execute the query with the specified filters
     query = """
-    SELECT c.id, c.name, c.element, c.rarity, c.lv_max, ps.itemized_description 
+    SELECT 
+        c.id, 
+        c.name, 
+        c.element, 
+        c.rarity, 
+        oag.lv_max AS lv_max, 
+        ps.itemized_description 
     FROM cards c
-    JOIN passive_skill_sets ps ON c.passive_skill_set_id = ps.id
-    WHERE (c.element BETWEEN 10 AND 14 OR c.element BETWEEN 20 AND 24)
-    AND c.rarity > 3
-    AND c.lv_max >= 120
-    AND c.id % 10 = 1
-    AND CAST(substr(c.id, 1, 1) AS INTEGER) NOT IN (2, 3, 5, 6, 7, 8, 9)
+    JOIN optimal_awakening_growths oag 
+        ON oag.optimal_awakening_grow_type = c.optimal_awakening_grow_type 
+        AND oag.step = (
+            SELECT MAX(oag_inner.step) 
+            FROM optimal_awakening_growths oag_inner 
+            WHERE oag_inner.optimal_awakening_grow_type = c.optimal_awakening_grow_type
+        )
+    JOIN passive_skill_sets ps 
+        ON ps.id = oag.passive_skill_set_id
+    WHERE 
+        (c.element BETWEEN 10 AND 14 OR c.element BETWEEN 20 AND 24)
+        AND c.rarity >= 3
+        AND oag.lv_max >= 120
+        AND c.id % 10 = 1
+        AND CAST(substr(c.id, 1, 1) AS INTEGER) NOT IN (2, 3, 5, 6, 7, 8, 9)
+        AND c.optimal_awakening_grow_type IS NOT NULL;
     """
     
     cursor.execute(query)
@@ -87,8 +103,8 @@ def save_to_js(data: Dict[str, List[Dict[str, Any]]], output_path: str) -> None:
 if __name__ == "__main__":
     # Example usage
     DB_PATH = "C:/Users/Usuario/Desktop/Ignacio/Dokkan/DokkanSQLiteDiffs/DokkanDatabaseDIFF-GB/gb.db"  # Change this to your database path
-    JSON_OUTPUT_PATH = "mockData.json"
-    JS_OUTPUT_PATH = "mockData.js"
+    JSON_OUTPUT_PATH = "mockData2.json"
+    JS_OUTPUT_PATH = "mockData2.js"
     
     try:
         # Fetch the data
