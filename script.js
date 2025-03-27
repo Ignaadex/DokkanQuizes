@@ -184,7 +184,7 @@ function formatPassiveText(text) {
         '{passiveImg:once}': '<img src="https://glben.dokkaninfo.com/assets/global/en/layout/en//image/ingame/battle/skill_dialog/passive_skill_dialog_icon_01.png" class="passive-icon" alt="once">',
         '{passiveImg:forever}': '<img src="https://glben.dokkaninfo.com/assets/global/en/layout/en//image/ingame/battle/skill_dialog/passive_skill_dialog_icon_02.png" class="passive-icon" alt="forever">',
         '{passiveImg:down_r}': '<img src="https://glben.dokkaninfo.com/assets/global/en/layout/en//image/ingame/battle/skill_dialog/passive_skill_dialog_arrow02.png" class="passive-arrow" alt="↓">',
-        '{passiveImg:stun}': '<img src="https://glben.dokkaninfo.com/assets/global/en/layout/en//image/ingame/battle/skill_dialog/passive_icon_st_0100.png" class="passive-icon" alt="stun">', // Added stun icon
+        '{passiveImg:stun}': '<img src="https://glben.dokkaninfo.com/assets/global/en/layout/en//image/ingame/battle/skill_dialog/passive_icon_st_0100.png" class="passive-icon" alt="passive-icon">', // Added stun icon
     };
 
     // Helper function to process text with image replacements
