@@ -58,7 +58,7 @@ function getPassiveSkillQuizData() {
     return mockData.cards.filter(card => {
         const elementInRange = (card.element >= 10 && card.element <= 14) || 
                              (card.element >= 20 && card.element <= 24);
-        const validRarity = card.rarity >= 3;
+        const validRarity = card.rarity > 3;
         
         return elementInRange && validRarity;
     });
@@ -175,13 +175,16 @@ function loadQuiz(quizData) {
 }
 
 // Format passive text
+// Format passive text
 function formatPassiveText(text) {
     // Define image replacements
     const imageReplacements = {
         '{passiveImg:up_g}': '<img src="https://glben.dokkaninfo.com/assets/global/en/layout/en//image/ingame/battle/skill_dialog/passive_skill_dialog_arrow01.png" class="passive-arrow" alt="↑">',
         '{passiveImg:down_y}': '<img src="https://glben.dokkaninfo.com/assets/global/en/layout/en//image/ingame/battle/skill_dialog/passive_skill_dialog_arrow03.png" class="passive-arrow" alt="↓">',
         '{passiveImg:once}': '<img src="https://glben.dokkaninfo.com/assets/global/en/layout/en//image/ingame/battle/skill_dialog/passive_skill_dialog_icon_01.png" class="passive-icon" alt="once">',
-        '{passiveImg:forever}': '<img src="https://glben.dokkaninfo.com/assets/global/en/layout/en//image/ingame/battle/skill_dialog/passive_skill_dialog_icon_02.png" class="passive-icon" alt="forever">'
+        '{passiveImg:forever}': '<img src="https://glben.dokkaninfo.com/assets/global/en/layout/en//image/ingame/battle/skill_dialog/passive_skill_dialog_icon_02.png" class="passive-icon" alt="forever">',
+        '{passiveImg:down_r}': '<img src="https://glben.dokkaninfo.com/assets/global/en/layout/en//image/ingame/battle/skill_dialog/passive_skill_dialog_arrow02.png" class="passive-arrow" alt="↓">',
+        '{passiveImg:stun}': '<img src="https://glben.dokkaninfo.com/assets/global/en/layout/en//image/ingame/battle/skill_dialog/passive_icon_st_0100.png" class="passive-icon" alt="stun">', // Added stun icon
     };
 
     // Helper function to process text with image replacements
@@ -200,13 +203,42 @@ function formatPassiveText(text) {
     const lines = text.split('\n');
     let formattedContent = [];
     let currentItems = [];
+    let multiLineTitle = null;
     
-    lines.forEach(line => {
-        line = line.trim();
-        if (!line) return;  // Skip empty lines
+    for (let i = 0; i < lines.length; i++) {
+        let line = lines[i].trim();
+        if (!line) continue;  // Skip empty lines
         
-        // Check if line is a title (between asterisks)
-        if (line.startsWith('*') && line.endsWith('*')) {
+        // Check if this is the start of a multi-line title
+        if (line.startsWith('*') && !line.endsWith('*')) {
+            multiLineTitle = line.substring(1); // Remove starting asterisk
+            continue;
+        }
+        
+        // Check if this is the continuation of a multi-line title
+        if (multiLineTitle !== null) {
+            if (line.endsWith('*')) {
+                // This is the end of the multi-line title
+                multiLineTitle += ' ' + line.substring(0, line.length - 1);
+                
+                // If we have collected items, add them before the new title
+                if (currentItems.length > 0) {
+                    formattedContent.push(`<ul>${currentItems.join('')}</ul>`);
+                    currentItems = [];
+                }
+                
+                // Add the complete multi-line title
+                const titleText = processText(multiLineTitle);
+                formattedContent.push(`<strong>${titleText}</strong>`);
+                multiLineTitle = null;
+            } else {
+                // This is a continuation of the multi-line title
+                multiLineTitle += ' ' + line;
+                continue;
+            }
+        }
+        // Check if line is a single-line title (between asterisks)
+        else if (line.startsWith('*') && line.endsWith('*')) {
             // If we have collected items, add them before the new title
             if (currentItems.length > 0) {
                 formattedContent.push(`<ul>${currentItems.join('')}</ul>`);
@@ -225,8 +257,11 @@ function formatPassiveText(text) {
             const lastItem = currentItems.pop();
             const continuationText = processText(line);
             currentItems.push(lastItem.slice(0, -5) + ' ' + continuationText + '</li>');
+        } else {
+            // This is just plain text, not part of a list
+            formattedContent.push(`<p>${processText(line)}</p>`);
         }
-    });
+    }
     
     // Add any remaining items
     if (currentItems.length > 0) {

@@ -7,23 +7,6 @@ const PASSIVE_SKILL = 'passive_skill';
 const getRandomElement = (array) => array[Math.floor(Math.random() * array.length)];
 
 // Quiz data retrieval
-async function getPassiveSkillQuizData() {
-  try {
-    const data = await fs.readFile(path.join(__dirname, 'passive_skill_sets.json'), 'utf8');
-    const { cards } = JSON.parse(data);
-
-    // Filter cards based on criteria
-    return cards.filter(card => {
-      const elementInRange = (card.element >= 10 && card.element <= 14) || 
-                             (card.element >= 20 && card.element <= 24);
-      const validRarity = card.rarity >= 3;
-      return elementInRange && validRarity;
-    });
-  } catch (error) {
-    console.error('Error reading card data:', error);
-    throw error;
-  }
-}
 
 // Quiz generators
 async function generatePassiveSkillQuiz() {

@@ -77,7 +77,7 @@
         .question pre {
             white-space: pre-wrap;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            /* line-height: 1.6; */
             color: rgba(255, 255, 255, 0.9);
             margin: 0;
         }
@@ -87,8 +87,11 @@
             display: block;
             font-size: 17px;
             font-weight: 500;
-            margin-top: 12px;
-            margin-bottom: 2px;
+            /* margin-top: 15px; */
+            margin-bottom: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 5px 8px;
+            border-radius: 4px;
         }
 
         .question pre strong:first-child {
@@ -98,13 +101,13 @@
         .question pre ul {
             list-style: none;
             margin: 0;
-            padding: 0;
+            padding: 0 0 10px 0;
         }
 
         .question pre li {
             padding-left: 16px;
             position: relative;
-            margin: 2px 0;
+            margin: 4px 0;
         }
 
         .question pre li::before {
@@ -115,6 +118,10 @@
             position: absolute;
             left: 0;
             color: rgba(255, 255, 255, 0.9);
+        }
+
+        .question pre p {
+            margin: 4px 0;
         }
 
         .passive-arrow {
