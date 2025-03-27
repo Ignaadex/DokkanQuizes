@@ -144,20 +144,14 @@ function initQuiz() {
 
 // Reset quiz
 document.getElementById('reset-btn').addEventListener('click', function() {
-    score = 0;
-    totalQuestions = 0;
-    document.getElementById('score').textContent = '0';
-    document.getElementById('total-questions').textContent = '0';
+    score = 0; // Reset score
+    totalQuestions = 0; // Reset total questions
+    document.getElementById('score').textContent = '0'; // Update score display
+    document.getElementById('total-questions').textContent = '0'; // Update total questions display
 
-    // Clear options
-    optionsContainer.innerHTML = ''; // Clear existing options
-
-    // Reset buttons
-    submitButton.disabled = true;
-    nextButton.disabled = true;
-
-    // Load the first question or reset the quiz state
-    initQuiz();
+    // Keep the current question and options intact
+    submitButton.disabled = false; // Enable submit button for the current question
+    nextButton.disabled = true; // Disable next button until the current question is answered
 });
 
 // Load quiz data
