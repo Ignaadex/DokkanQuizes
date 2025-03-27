@@ -283,7 +283,6 @@ HardModeButton.addEventListener('click', () => {
     }
 });
 
-
 // Generate options
 function generateOptions(options) {
     optionsContainer.innerHTML = '';
@@ -296,22 +295,14 @@ function generateOptions(options) {
         optionElement.className = 'option';
         optionElement.dataset.id = option.id;
 
-        // Get the thumbnail path based on card ID
         const thumbnailPath = getCardThumbnailPath(option.id);
-
-        // Fallback in case the thumbnail doesn't exist
-        const placeholderColor = element.name === 'AGL' ? '00bfff' :
-                               element.name === 'TEQ' ? '00cc66' :
-                               element.name === 'INT' ? '9966ff' :
-                               element.name === 'STR' ? 'ff4d4d' : 'ffcc33';
-        const placeholderUrl = `https://placeholder.pics/svg/50x50/${placeholderColor}/FFFFFF/${option.name.substring(0, 1)}`;
+        const placeholderUrl = `./images/placeholder_${element.name.toLowerCase()}.svg`;
 
         const characterIcon = document.createElement('div');
         characterIcon.className = 'character-icon';
         characterIcon.style.setProperty('--character-thumb', `url('${thumbnailPath}')`);
         characterIcon.style.setProperty('--placeholder-bg', `url('${placeholderUrl}')`);
 
-        // Hide character name if hard mode is active
         const characterName = isHardMode ? hideCharacterName(option.name) : option.name;
 
         optionElement.innerHTML = `
@@ -324,7 +315,6 @@ function generateOptions(options) {
 
         optionElement.insertBefore(characterIcon, optionElement.firstChild);
 
-        // Add click event
         optionElement.addEventListener('click', () => selectOption(option.id));
 
         optionsContainer.appendChild(optionElement);

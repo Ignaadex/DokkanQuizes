@@ -1,0 +1,358 @@
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    /* padding: 20px; */
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: #00bfff;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.quiz-container {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+svg {
+filter: brightness(80%) contrast(90%) saturate(70%);
+}
+
+.category-selector {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.category-btn {
+    background-color: #2d2d2d;
+    color: #00bfff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.category-btn:hover {
+    background-color: #3d3d3d;
+}
+
+.category-btn.active {
+    background-color: #00bfff;
+    color: #121212;
+}
+
+.question {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: rgba(20, 0, 0, 0.95);
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.question pre {
+    white-space: pre-wrap;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* line-height: 1.6; */
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+.question pre strong {
+    color: #ffffff;
+    /* display: block; */
+    font-size: 17px;
+    font-weight: 500;
+    /* margin-top: 15px; */
+    margin-bottom: 8px;
+    /* background-color: rgba(255, 255, 255, 0.1); */
+    padding: 5px 8px;
+    border-radius: 4px;
+}
+
+.question pre strong:first-child {
+    margin-top: 0;
+}
+
+.question pre ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 10px 0;
+}
+
+.question pre li {
+    padding-left: 16px;
+    position: relative;
+    margin: 4px 0;
+}
+
+.question pre li::before {
+    display: none;
+}
+
+.question pre .marker {
+    position: absolute;
+    left: 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.question pre p {
+    margin: 4px 0;
+}
+
+.passive-arrow {
+    vertical-align: middle;
+    height: 14px;
+    margin: 0 2px;
+}
+
+.passive-icon {
+    vertical-align: middle;
+    height: 18px;
+    margin: 0 2px;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.option {
+    background-color: #2d2d2d;
+    border: 2px solid #3d3d3d;
+    border-radius: 8px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.option:hover {
+    border-color: #00bfff;
+}
+
+.option.selected {
+    border-color: #00bfff;
+    background-color: #003d52;
+}
+
+.option.correct {
+    border-color: #28a745;
+    background-color: #1e4620;
+}
+
+.option.incorrect {
+    border-color: #dc3545;
+    background-color: #471a1f;
+}
+
+.character-icon {
+    width: 65px;
+    height: 65px;
+    margin-right: 15px;
+    border-radius: 8px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+}
+
+.character-icon {
+    background-image: var(--placeholder-bg) !important;
+}
+
+.option.submitted .character-icon {
+    background-image: var(--character-thumb) !important;
+}
+
+.character-info {
+    flex-grow: 1;
+}
+
+.character-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.character-element {
+    font-size: 14px;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.character-rarity {
+    font-size: 14px;
+    display: inline-block;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.control-btn {
+    background-color: #00bfff;
+    color: #121212;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    background-color: #0095cc;
+}
+
+.control-btn:disabled {
+    background-color: #5a5a5a;
+    cursor: not-allowed;
+}
+
+.score {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.score-value {
+    font-weight: bold;
+    color: #00bfff;
+}
+
+.reset-btn {
+    margin-right: 5px;
+}
+
+#reset-btn {
+    color: #121212;
+    border: none;
+    background-color: white;
+    border-radius: 5px;
+    /* margin: 0 auto; */
+    margin-right: 5px;
+    padding-top: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid #00bfff;
+}
+
+#reset-btn:hover {
+    
+    background-color: #b9e1ef;
+}
+
+/* Element colors */
+.AGL {
+    background-color: #00bfff;
+    color: #121212;
+}
+
+.TEQ {
+    background-color: #00cc66;
+    color: #121212;
+}
+
+.INT {
+    background-color: #9966ff;
+    color: #ffffff;
+}
+
+.STR {
+    background-color: #ff4d4d;
+    color: #ffffff;
+}
+
+.PHY {
+    background-color: #ffcc33;
+    color: #121212;
+}
+
+/* Rarity colors */
+.N {
+    color: #b0b0b0;
+}
+
+.R {
+    color: #00cc66;
+}
+
+.SR {
+    color: #9966ff;
+}
+
+.SSR {
+    color: #ff4d4d;
+}
+
+.UR {
+    color: #ffcc33;
+}
+
+.LR {
+    color: #ff9900;
+}
+
+/* Super/Extreme indicators */
+.Super:before {
+    content: "S";
+}
+
+.Extreme:before {
+    content: "E";
+}
+
+/* GitHub Corner */
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+}
+
+@keyframes octocat-wave {
+    0%, 100% { transform: rotate(0); }
+    20%, 60% { transform: rotate(-25deg); }
+    40%, 80% { transform: rotate(10deg); }
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('./extra/font/Helvetica Neue 97 Black Condensed Oblique.off') format('0ff'),
+        url('./extra/font/Helvetica Neue 97 Black Condensed Oblique.off') format('off');
+    font-weight: 900; /* Black */
+    font-style: oblique; /* Oblique */
+}
+
+@media (max-width: 500px) {
+    .github-corner:hover .octo-arm {
+        animation: none;
+    }
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out;
+    }
+}
