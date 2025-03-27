@@ -339,7 +339,7 @@ function generateOptions(options) {
 
 // Function to hide character name (already defined)
 function hideCharacterName(name) {
-    return name.replace(/(\S)\S+/g, '$1.'); // Example: "Goku" -> "G."
+    return name.replace(/(\S)\S+/g, '???'); // Example: "Goku" -> "G."
 }
 
 // Select option
