@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokkan Card Passive Displayer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .passive-container {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .passive-section {
+            margin-bottom: 15px;
+        }
+        .passive-section h3 {
+            margin-bottom: 5px;
+            font-size: 1.2em;
+            color: #333;
+        }
+        .passive-section p {
+            margin: 0;
+            padding-left: 10px;
+        }
+        .passive-img {
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="passive-container">
+        <div class="passive-section">
+            <h3>Basic Effect(s)</h3>
+            <p>ATK 200% <img src="passiveImg.png" alt="Passive Icon" class="passive-img"></p>
+            <p>DEF 220% <img src="passiveImg.png" alt="Passive Icon" class="passive-img"></p>
+            <p>Randomly changes Ki Spheres of a certain Type (TEQ excluded) to TEQ Ki Spheres</p>
+            <p>Receives an additional Ki +2 per Rainbow Ki Sphere obtained</p>
+        </div>
+        <div class="passive-section">
+            <h3>For every TEQ Ki Sphere obtained</h3>
+            <p>ATK & DEF 40% <img src="passiveImg.png" alt="Passive Icon" class="passive-img"></p>
+        </div>
+        <div class="passive-section">
+            <h3>For every non-TEQ Ki Sphere obtained</h3>
+            <p>ATK 22% <img src="passiveImg.png" alt="Passive Icon" class="passive-img"></p>
+            <p>DEF 22% <img src="passiveImg.png" alt="Passive Icon" class="passive-img"></p>
+        </div>
+        <div class="passive-section">
+            <h3>6 or more Ki Spheres obtained</h3>
+            <p>ATK 80% <img src="passiveImg.png" alt="Passive Icon" class="passive-img"></p>
+            <p>Performs a critical hit</p>
+        </div>
+        <div class="passive-section">
+            <h3>7 or more Ki Spheres obtained</h3>
+            <p>DEF 90% <img src="passiveImg.png" alt="Passive Icon" class="passive-img"></p>
+            <p>Reduces damage received by 20%</p>
+        </div>
+        <div class="passive-section">
+            <h3>If HP is 50% or less when attacking</h3>
+            <p>Launches an additional Super Attack</p>
+        </div>
+        <div class="passive-section">
+            <h3>If HP is 50% or more when receiving a Ki Blast Super Attack</h3>
+            <p>Nullifies it and counters with tremendous power</p>
+        </div>
+    </div>
+</body>
+</html>
