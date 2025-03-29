@@ -181,7 +181,10 @@ function formatPassiveText(text) {
         '{passiveImg:forever}': '<img src="https://glben.dokkaninfo.com/assets/global/en/layout/en//image/ingame/battle/skill_dialog/passive_skill_dialog_icon_02.png" class="passive-icon" alt="forever">',
         '{passiveImg:down_r}': '<img src="https://glben.dokkaninfo.com/assets/global/en/layout/en//image/ingame/battle/skill_dialog/passive_skill_dialog_arrow02.png" class="passive-arrow" alt="↓">',
         '{passiveImg:stun}': '<img src="https://glben.dokkaninfo.com/assets/global/en/layout/en//image/ingame/battle/skill_dialog/passive_icon_st_0100.png" class="passive-icon" alt="passive-icon">', // Added stun icon
-    };
+        '{passiveImg:astute}': '<img src="https://glben.dokkaninfo.com/assets/global/en/layout/en//image/ingame/battle/skill_dialog/passive_icon_st_0102.png" class="passive-icon" alt="passive-icon">', // Added astute icon
+        '{passiveImg:atk_down}': '<img src="https://glben.dokkaninfo.com/assets/global/en/layout/en//image/ingame/battle/skill_dialog/passive_icon_st_0011.png" class="passive-icon" alt="passive-icon">', // Added ATK down icon
+        '{passiveImg:def_down}': '<img src="https://glben.dokkaninfo.com/assets/global/en/layout/en//image/ingame/battle/skill_dialog/passive_icon_st_0012.png" class="passive-icon" alt="passive-icon">', // Added DEF down icon
+    }; 
 
     // Helper function to process text with image replacements
     const processText = (text) => {
