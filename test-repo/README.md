@@ -152,6 +152,7 @@ The mock server includes the following test cards:
 - **CORS**: The mock server includes CORS headers for local testing
 - **Real dbz.space**: The actual dbz.space domain appears to be inaccessible or blocked. The fetcher includes error handling for this case.
 - **Rate Limiting**: When using real APIs, be respectful of server resources
+- **Security**: The mock server is intended for local development/testing only. Do not expose it to the internet without proper security measures (rate limiting, authentication, etc.)
 
 ## Troubleshooting
 
